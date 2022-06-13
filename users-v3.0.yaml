@@ -1,0 +1,802 @@
+openapi: 3.0.0
+info:
+  version: 0.0.1
+  title: Users Service
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  contact:
+    name: Alisksandr Vorakh
+    email: aliaksandrvorakh@gmail.com
+  description: User Service provides access to the management system on user data.
+servers: []
+paths:
+  /users:
+    get:
+      summary: Retrieve users
+      operationId: getUsers
+      tags:
+        - get_users
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            exclusiveMinimum: true
+            maximum: 100
+            example: 66
+            default: 100
+      responses:
+        '200':
+          description: List of users
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+              examples:
+                example-simple:
+                  value:
+                    - id: 12
+                      email: test@example.com
+                      password: pa$$word
+                      firstName: John
+                      lastName: Smith
+                      countryIsoCode: US
+                      mfa: true
+                      role: ADMIN
+                      subscription:
+                        type: PREMIUM
+                        isTimeLimited: true
+                        expiredIn: '2021-08-24T14:15:22.22Z'
+                    - id: 14
+                      email: demo@example.com
+                      password: pa$$word
+                      firstName: Jeck
+                      lastName: Smith
+                      countryIsoCode: US
+                      mfa: false
+                      role: USER
+                      subscription:
+                        type: FREE
+                        isTimeLimited: false
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 1000
+                    message: Validation error
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '1000'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: Validation error
+              description: Error message header
+        '401':
+          description: Unauthorized (Authorisation Error)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 1001
+                    message: Authorisation Error
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '1001'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: Authorisation Error
+              description: Error message header
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 2000
+                    message: Internal Error
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '2000'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: Internal Error
+              description: Error message header
+      description: List all users.
+      security:
+        - X-API-KEY: []
+    post:
+      summary: Create a new user.
+      operationId: createUser
+      tags:
+        - create_user
+      responses:
+        '201':
+          description: Successfull response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 1000
+                    message: Validation error
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '1000'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: Validation error
+              description: Error message header
+        '401':
+          description: Unauthorized (Authorisation Error)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 1001
+                    message: Authorisation Error
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '1001'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: Authorisation Error
+              description: Error message header
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 2000
+                    message: Internal Error
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '2000'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: Internal Error
+              description: Error message header
+      description: Create a new user.
+      parameters: []
+      security:
+        - X-API-KEY: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserInput'
+            examples:
+              example-success:
+                value:
+                  email: test@example.com
+                  password: pa$$word
+                  firstName: John
+                  lastName: Smith
+                  countryIsoCode: US
+                  role: ADMIN
+        description: Successfull request
+    parameters: []
+  '/users/{userId}':
+    get:
+      summary: Retrieve a user.
+      operationId: getUser
+      tags:
+        - get_user_by_id
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The id of the pet to retrieve
+          schema:
+            type: string
+        - schema:
+            type: string
+            example: SomeJWTToken
+          in: header
+          name: X-ACCESS-TOKEN
+          required: true
+          description: A token that you provide when making API calls for a user.  Include the token in a header parameter called X-ACCESS-TOKEN.
+      responses:
+        '200':
+          description: Successfull response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                example:
+                  value:
+                    id: 12
+                    email: test@example.com
+                    password: pa$$word
+                    firstName: John
+                    lastName: Smith
+                    countryIsoCode: US
+                    mfa: false
+                    role: ADMIN
+                    subscription:
+                      type: PREMIUM
+                      isTimeLimited: true
+                      expiredIn: '2021-08-24T14:15:22.22Z'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 1000
+                    message: Validation error
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '1000'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: Validation error
+              description: Error message header
+        '401':
+          description: Unauthorized (Authorisation Error)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 1001
+                    message: Authorisation Error
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '1001'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: Authorisation Error
+              description: Error message header
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 1100
+                    message: User does not find
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '1100'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: User does not find
+              description: Error message header
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 2000
+                    message: Internal Error
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '2000'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: Internal Error
+              description: Error message header
+      security:
+        - X-API-KEY: []
+      description: Retrieve a user.
+    parameters:
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+        description: User ID
+    delete:
+      summary: Delete a user.
+      operationId: deleteUser
+      tags:
+        - delete_user_by_id
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The id of the pet to retrieve
+          schema:
+            type: string
+        - schema:
+            type: string
+            example: SomeJWTToken
+          in: header
+          name: X-ACCESS-TOKEN
+          required: true
+          description: A token that you provide when making API calls for a user.  Include the token in a header parameter called X-ACCESS-TOKEN.
+      responses:
+        '204':
+          description: No Content (Successful deletion)
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 1000
+                    message: Validation error
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '1000'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: Validation error
+              description: Error message header
+        '401':
+          description: Unauthorized (Authorisation Error)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 1001
+                    message: Authorisation Error
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '1001'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: Authorisation Error
+              description: Error message header
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 1100
+                    message: User does not find
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '1100'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: User does not find
+              description: Error message header
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 2000
+                    message: Internal Error
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '2000'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: Internal Error
+              description: Error message header
+      description: Delete a user.
+      security:
+        - X-API-KEY: []
+    put:
+      summary: Update a user
+      operationId: updateUser
+      tags:
+        - update_user_by_id
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The id of the pet to retrieve
+          schema:
+            type: string
+        - schema:
+            type: string
+            example: SomeJWTToken
+          in: header
+          name: X-ACCESS-TOKEN
+          required: true
+          description: A token that you provide when making API calls for a user.  Include the token in a header parameter called X-ACCESS-TOKEN.
+      responses:
+        '204':
+          description: No Content (Successful updating)
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 1000
+                    message: Validation error
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '1000'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: Validation error
+              description: Error message header
+        '401':
+          description: Unauthorized (Authorisation Error)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 1001
+                    message: Authorisation Error
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '1001'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: Authorisation Error
+              description: Error message header
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 1100
+                    message: User does not find
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '1100'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: User does not find
+              description: Error message header
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 2000
+                    message: Internal Error
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '2000'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: Internal Error
+              description: Error message header
+      description: Update a user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserInput'
+        description: Request
+      security:
+        - X-API-KEY: []
+components:
+  schemas:
+    Users:
+      type: array
+      items:
+        $ref: '#/components/schemas/User'
+      description: List of users.
+      x-internal: false
+    User:
+      x-examples: {}
+      type: object
+      title: User
+      description: User data related to output.
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 12
+          description: User ID
+          minimum: 0
+          exclusiveMinimum: true
+          readOnly: true
+        email:
+          type: string
+          format: email
+          example: test@example.com
+          minLength: 6
+          maxLength: 190
+          description: User email
+        password:
+          type: string
+          format: password
+          description: User Password
+        firstName:
+          type: string
+          description: First name
+          example: John
+        lastName:
+          type: string
+          description: Last name
+          example: Smith
+        countryIsoCode:
+          type: string
+          description: The two-character ISO 3166-1 alpha code for the country.
+          pattern: '^[A-Z]{2}$'
+          minLength: 2
+          maxLength: 2
+          example: US
+        mfa:
+          type: boolean
+          description: 'Multi-factor Authentication(MFA)is enabled. '
+          default: false
+        role:
+          type: string
+          enum:
+            - ADMIN
+            - USER
+            - MODERATOR
+          description: User role
+        subscription:
+          $ref: '#/components/schemas/Subscription'
+      required:
+        - id
+        - email
+        - countryIsoCode
+    IdOutput:
+      x-examples: {}
+      type: object
+      title: IdOutput
+      description: User ID related to output.
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 12
+          description: User ID
+          minimum: 0
+          exclusiveMinimum: true
+          readOnly: true
+      required:
+        - id
+    UserInput:
+      x-examples:
+        example-simple:
+          email: test@example.com
+          password: pa$$word
+          role: ADMIN
+        example-full:
+          email: test@example.com
+          password: pa$$word
+          firstName: John
+          lastName: Smith
+          countryIsoCode: US
+          role: ADMIN
+      type: object
+      title: UserIn
+      description: User data related to the new user creation.
+      properties:
+        email:
+          type: string
+          format: email
+          example: test@example.com
+          minLength: 6
+          maxLength: 190
+          description: User email.
+        password:
+          type: string
+          format: password
+          description: User password.
+        firstName:
+          type: string
+          description: First name.
+          example: John
+        lastName:
+          type: string
+          description: Last name.
+          example: Smith
+        countryIsoCode:
+          type: string
+          description: The two-character ISO 3166-1 alpha code for the country.
+          pattern: '^[A-Z]{2}$'
+          minLength: 2
+          maxLength: 2
+          example: US
+        role:
+          type: string
+          enum:
+            - ADMIN
+            - USER
+            - MODERATOR
+          description: User role.
+      required:
+        - email
+        - password
+        - role
+    Error:
+      type: object
+      description: Error details
+      properties:
+        code:
+          type: integer
+          format: int32
+          description: Error code.
+          minimum: 4
+          maximum: 4
+          example: 1234
+        message:
+          type: string
+          example: Validation error
+          description: Error message.
+      required:
+        - code
+        - message
+    Subscription:
+      title: Subscription
+      type: object
+      description: Subscription data related to the user
+      x-examples:
+        example-free:
+          type: FREE
+          isTimeLimited: false
+        example-premium:
+          type: PREMIUM
+          isTimeLimited: true
+          expiredIn: '2021-08-24T14:15:22.22Z'
+      properties:
+        type:
+          type: string
+          enum:
+            - FREE
+            - PREMIUM
+          description: Subscription type.
+          example: PREMIUM
+        isTimeLimited:
+          type: boolean
+          default: true
+          description: The subscription usage is affected by time limitations.
+        expiredIn:
+          type: string
+          format: date-time
+          pattern: '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{2}Z$'
+          example: '2021-08-24T14:15:22.22Z'
+          description: |-
+            The validity period of the subscription expires, specified in UTC.
+            A string in ISO 8601 format, YYYY-MM-DDThh:mm:ssZ.
+      required:
+        - type
+        - isTimeLimited
+  securitySchemes:
+    X-API-KEY:
+      name: X-API-KEY
+      type: apiKey
+      in: header
+      description: |-
+        An API key is a key that you provide when making API calls. 
+        Include the token in a header parameter called X-API-KEY.
+security:
+  - X-API-KEY: []

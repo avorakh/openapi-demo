@@ -1,0 +1,2248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="22d34071-1489-49ed-ae37-fdb933b0a14c" created="3.30.0" activeEnvironment="Default environment" name="UserService" updated="3.40.1 2022-06-10T12:52:02Z" encryptionMode="Not encrypted" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings/>
+  <con:interface xsi:type="con:RestService" id="65cc80de-3da9-4863-9b53-b948fe42881f" name="Users Service" type="rest_ex" wadlVersion="https://swagger.io/openapiv3/specification" definitionUrl="file:/home/vorakh/Desktop/openapi-demo/users-v3.0-beta.yaml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <con:description>User Service provides access to the management system on user data.</con:description>
+    <con:settings/>
+    <con:definitionCache type="TEXT" rootPart="file:/home/vorakh/Desktop/openapi-demo/users-v3.0-beta.yaml">
+      <con:part>
+        <con:url>file:/home/vorakh/Desktop/openapi-demo/users-v3.0-beta.yaml</con:url>
+        <con:content>{"openapi":"3.0.0","info":{"title":"Users Service","description":"User Service provides access to the management system on user data.","contact":{"name":"Alisksandr Vorakh","email":"aliaksandrvorakh@gmail.com"},"license":{"name":"Apache 2.0","url":"http://www.apache.org/licenses/LICENSE-2.0.html"},"version":"0.0.1"},"servers":[{"url":"/"}],"security":[{"API-KEY":[]}],"paths":{"/users/{userId}":{"get":{"tags":["get_user_by_id"],"summary":"Retrieve a user.","description":"Retrieve a user.","operationId":"getUser","parameters":[{"name":"userId","in":"path","description":"The id of the pet to retrieve","required":true,"style":"simple","explode":false,"schema":{"type":"string"}},{"name":"X-ACCESS-TOKEN","in":"header","description":"A token that you provide when making API calls for a user.  Include the token in a header parameter called X-ACCESS-TOKEN.","required":true,"style":"simple","explode":false,"schema":{"type":"string","example":"SomeJWTToken"}}],"responses":{"200":{"description":"Successfull response","content":{"application/json":{"schema":{"$ref":"#/components/schemas/User"},"examples":{"example":{"value":{"id":12,"email":"test@example.com","password":"pa$$word","firstName":"John","lastName":"Smith","countryIsoCode":"US","mfa":false,"role":"ADMIN","subscription":{"type":"PREMIUM","isTimeLimited":true,"expiredIn":"2021-08-24T14:15:22.22Z"}}}}}}},"400":{"description":"Bad Request","headers":{"X-ERROR-CODE":{"description":"Error code header","style":"simple","explode":false,"schema":{"type":"string","example":"1000"}},"X-ERROR-MESSAGE":{"description":"Error message header","style":"simple","explode":false,"schema":{"type":"string","example":"Validation error"}}},"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Error"},"examples":{"example":{"value":{"code":1000,"message":"Validation error"}}}}}},"401":{"description":"Unauthorized (Authorisation Error)","headers":{"X-ERROR-CODE":{"description":"Error code header","style":"simple","explode":false,"schema":{"type":"string","example":"1001"}},"X-ERROR-MESSAGE":{"description":"Error message header","style":"simple","explode":false,"schema":{"type":"string","example":"Authorisation Error"}}},"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Error"},"examples":{"example":{"value":{"code":1001,"message":"Authorisation Error"}}}}}},"404":{"description":"Not Found","headers":{"X-ERROR-CODE":{"description":"Error code header","style":"simple","explode":false,"schema":{"type":"string","example":"1100"}},"X-ERROR-MESSAGE":{"description":"Error message header","style":"simple","explode":false,"schema":{"type":"string","example":"User does not find"}}},"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Error"},"examples":{"example":{"value":{"code":1100,"message":"User does not find"}}}}}},"500":{"description":"Internal Server Error","headers":{"X-ERROR-CODE":{"description":"Error code header","style":"simple","explode":false,"schema":{"type":"string","example":"2000"}},"X-ERROR-MESSAGE":{"description":"Error message header","style":"simple","explode":false,"schema":{"type":"string","example":"Internal Error"}}},"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Error"},"examples":{"example":{"value":{"code":2000,"message":"Internal Error"}}}}}}},"security":[{"API-KEY":[]}]},"put":{"tags":["update_user_by_id"],"summary":"Update a user","description":"Update a user","operationId":"updateUser","parameters":[{"name":"userId","in":"path","description":"The id of the pet to retrieve","required":true,"style":"simple","explode":false,"schema":{"type":"string"}},{"name":"X-ACCESS-TOKEN","in":"header","description":"A token that you provide when making API calls for a user.  Include the token in a header parameter called X-ACCESS-TOKEN.","required":true,"style":"simple","explode":false,"schema":{"type":"string","example":"SomeJWTToken"}}],"requestBody":{"description":"Request","content":{"application/json":{"schema":{"$ref":"#/components/schemas/UserInput"}}}},"responses":{"204":{"description":"No Content (Successful updating)"},"400":{"description":"Bad Request","headers":{"X-ERROR-CODE":{"description":"Error code header","style":"simple","explode":false,"schema":{"type":"string","example":"1000"}},"X-ERROR-MESSAGE":{"description":"Error message header","style":"simple","explode":false,"schema":{"type":"string","example":"Validation error"}}},"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Error"},"examples":{"example":{"value":{"code":1000,"message":"Validation error"}}}}}},"401":{"description":"Unauthorized (Authorisation Error)","headers":{"X-ERROR-CODE":{"description":"Error code header","style":"simple","explode":false,"schema":{"type":"string","example":"1001"}},"X-ERROR-MESSAGE":{"description":"Error message header","style":"simple","explode":false,"schema":{"type":"string","example":"Authorisation Error"}}},"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Error"},"examples":{"example":{"value":{"code":1001,"message":"Authorisation Error"}}}}}},"404":{"description":"Not Found","headers":{"X-ERROR-CODE":{"description":"Error code header","style":"simple","explode":false,"schema":{"type":"string","example":"1100"}},"X-ERROR-MESSAGE":{"description":"Error message header","style":"simple","explode":false,"schema":{"type":"string","example":"User does not find"}}},"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Error"},"examples":{"example":{"value":{"code":1100,"message":"User does not find"}}}}}},"500":{"description":"Internal Server Error","headers":{"X-ERROR-CODE":{"description":"Error code header","style":"simple","explode":false,"schema":{"type":"string","example":"2000"}},"X-ERROR-MESSAGE":{"description":"Error message header","style":"simple","explode":false,"schema":{"type":"string","example":"Internal Error"}}},"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Error"},"examples":{"example":{"value":{"code":2000,"message":"Internal Error"}}}}}}},"security":[{"API-KEY":[]}]},"delete":{"tags":["delete_user_by_id"],"summary":"Delete a user.","description":"Delete a user.","operationId":"deleteUser","parameters":[{"name":"userId","in":"path","description":"The id of the pet to retrieve","required":true,"style":"simple","explode":false,"schema":{"type":"string"}},{"name":"X-ACCESS-TOKEN","in":"header","description":"A token that you provide when making API calls for a user.  Include the token in a header parameter called X-ACCESS-TOKEN.","required":true,"style":"simple","explode":false,"schema":{"type":"string","example":"SomeJWTToken"}}],"responses":{"204":{"description":"No Content (Successful deletion)"},"400":{"description":"Bad Request","headers":{"X-ERROR-CODE":{"description":"Error code header","style":"simple","explode":false,"schema":{"type":"string","example":"1000"}},"X-ERROR-MESSAGE":{"description":"Error message header","style":"simple","explode":false,"schema":{"type":"string","example":"Validation error"}}},"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Error"},"examples":{"example":{"value":{"code":1000,"message":"Validation error"}}}}}},"401":{"description":"Unauthorized (Authorisation Error)","headers":{"X-ERROR-CODE":{"description":"Error code header","style":"simple","explode":false,"schema":{"type":"string","example":"1001"}},"X-ERROR-MESSAGE":{"description":"Error message header","style":"simple","explode":false,"schema":{"type":"string","example":"Authorisation Error"}}},"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Error"},"examples":{"example":{"value":{"code":1001,"message":"Authorisation Error"}}}}}},"404":{"description":"Not Found","headers":{"X-ERROR-CODE":{"description":"Error code header","style":"simple","explode":false,"schema":{"type":"string","example":"1100"}},"X-ERROR-MESSAGE":{"description":"Error message header","style":"simple","explode":false,"schema":{"type":"string","example":"User does not find"}}},"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Error"},"examples":{"example":{"value":{"code":1100,"message":"User does not find"}}}}}},"500":{"description":"Internal Server Error","headers":{"X-ERROR-CODE":{"description":"Error code header","style":"simple","explode":false,"schema":{"type":"string","example":"2000"}},"X-ERROR-MESSAGE":{"description":"Error message header","style":"simple","explode":false,"schema":{"type":"string","example":"Internal Error"}}},"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Error"},"examples":{"example":{"value":{"code":2000,"message":"Internal Error"}}}}}}},"security":[{"API-KEY":[]}]},"parameters":[{"name":"userId","in":"path","description":"User ID","required":true,"style":"simple","explode":false,"schema":{"type":"string"}}]},"/users":{"description":"","get":{"description":"List all users.","parameters":[{"name":"limit","in":"query","required":false,"schema":{"type":"string"}}],"responses":{"200":{"description":"List of users","content":{"application/json":{"example":""}}},"400":{"description":"Bad Request","content":{"application/json":{"example":""}}},"401":{"description":"Unauthorized (Authorisation Error)","content":{"application/json":{"example":""}}},"500":{"description":"Internal Server Error","content":{"application/json":{"example":""}}}}},"post":{"description":"Create a new user.","requestBody":{"content":{"application/json":{"example":"{\"email\":\"test@example.com\",\"password\":\"pa$$word\",\"firstName\":\"John\",\"lastName\":\"Smith\",\"countryIsoCode\":\"US\",\"role\":\"ADMIN\"}"}}},"responses":{"201":{"description":"Successfull response","content":{"application/json":{"example":""}}},"400":{"description":"Bad Request","content":{"application/json":{"example":""}}},"401":{"description":"Unauthorized (Authorisation Error)","content":{"application/json":{"example":""}}},"500":{"description":"Internal Server Error","content":{"application/json":{"example":""}}}}}}},"components":{"schemas":{"Users":{"type":"array","description":"List of users.","items":{"$ref":"#/components/schemas/User"},"x-internal":false},"User":{"title":"User","required":["countryIsoCode","email","id"],"type":"object","properties":{"id":{"minimum":0,"exclusiveMinimum":true,"type":"integer","description":"User ID","format":"int64","readOnly":true,"example":12},"email":{"maxLength":190,"minLength":6,"type":"string","description":"User email","format":"email","example":"test@example.com"},"password":{"type":"string","description":"User Password","format":"password"},"firstName":{"type":"string","description":"First name","example":"John"},"lastName":{"type":"string","description":"Last name","example":"Smith"},"countryIsoCode":{"maxLength":2,"minLength":2,"pattern":"^[A-Z]{2}$","type":"string","description":"The two-character ISO 3166-1 alpha code for the country.","example":"US"},"mfa":{"type":"boolean","description":"Multi-factor Authentication(MFA)is enabled. ","default":false},"role":{"type":"string","description":"User role","enum":["ADMIN","USER","MODERATOR"]},"subscription":{"$ref":"#/components/schemas/Subscription"}},"description":"User data related to output.","x-examples":{}},"IdOutput":{"title":"IdOutput","required":["id"],"type":"object","properties":{"id":{"minimum":0,"exclusiveMinimum":true,"type":"integer","description":"User ID","format":"int64","readOnly":true,"example":12}},"description":"User ID related to output.","x-examples":{}},"UserInput":{"title":"UserIn","required":["email","password","role"],"type":"object","properties":{"email":{"maxLength":190,"minLength":6,"type":"string","description":"User email.","format":"email","example":"test@example.com"},"password":{"type":"string","description":"User password.","format":"password"},"firstName":{"type":"string","description":"First name.","example":"John"},"lastName":{"type":"string","description":"Last name.","example":"Smith"},"countryIsoCode":{"maxLength":2,"minLength":2,"pattern":"^[A-Z]{2}$","type":"string","description":"The two-character ISO 3166-1 alpha code for the country.","example":"US"},"role":{"type":"string","description":"User role.","enum":["ADMIN","USER","MODERATOR"]}},"description":"User data related to the new user creation.","x-examples":{"example-simple":{"email":"test@example.com","password":"pa$$word","role":"ADMIN"},"example-full":{"email":"test@example.com","password":"pa$$word","firstName":"John","lastName":"Smith","countryIsoCode":"US","role":"ADMIN"}}},"Error":{"required":["code","message"],"type":"object","properties":{"code":{"maximum":4,"minimum":4,"type":"integer","description":"Error code.","format":"int32","example":1234},"message":{"type":"string","description":"Error message.","example":"Validation error"}},"description":"Error details"},"Subscription":{"title":"Subscription","required":["isTimeLimited","type"],"type":"object","properties":{"type":{"type":"string","description":"Subscription type.","example":"PREMIUM","enum":["FREE","PREMIUM"]},"isTimeLimited":{"type":"boolean","description":"The subscription usage is affected by time limitations.","default":true},"expiredIn":{"pattern":"^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{2}Z$","type":"string","description":"The validity period of the subscription expires, specified in UTC.\nA string in ISO 8601 format, YYYY-MM-DDThh:mm:ssZ.","format":"date-time","example":"2021-08-24T14:15:22.22Z"}},"description":"Subscription data related to the user","x-examples":{"example-free":{"type":"FREE","isTimeLimited":false},"example-premium":{"type":"PREMIUM","isTimeLimited":true,"expiredIn":"2021-08-24T14:15:22.22Z"}}}},"securitySchemes":{"API-KEY":{"type":"apiKey","description":"An API key is a key that you provide when making API calls. \nInclude the token in a header parameter called API-KEY.","name":"API-KEY","in":"header"}}}}</con:content>
+        <con:type>https://swagger.io/openapiv3/specification</con:type>
+      </con:part>
+    </con:definitionCache>
+    <con:endpoints>
+      <con:endpoint>/</con:endpoint>
+    </con:endpoints>
+    <con:resource name="/users" path="/users" id="b52375a1-3bbb-4d3c-8d3a-d5c3efe038ef">
+      <con:settings/>
+      <con:parameters/>
+      <con:method name="getUsers" id="085c4807-2f4d-4349-b50b-65b5095a9a73" method="GET">
+        <con:description>List all users.</con:description>
+        <con:settings/>
+        <con:parameters>
+          <con:parameter>
+            <con:name>limit</con:name>
+            <con:value>100</con:value>
+            <con:style>QUERY</con:style>
+            <con:default>100</con:default>
+            <con:description>How many items to return at one time (max 100)</con:description>
+          </con:parameter>
+        </con:parameters>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:description>List of users</con:description>
+          <con:sampleContent>[ {
+  "id" : 12,
+  "email" : "test@example.com",
+  "password" : "string",
+  "firstName" : "John",
+  "lastName" : "Smith",
+  "countryIsoCode" : "US",
+  "mfa" : false,
+  "role" : "ADMIN",
+  "subscription" : {
+    "type" : "PREMIUM",
+    "isTimeLimited" : true,
+    "expiredIn" : "2021-08-24T14:15:22.220Z"
+  }
+} ]</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>400</con:status>
+          <con:params/>
+          <con:description>Bad Request</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>401</con:status>
+          <con:params/>
+          <con:description>Unauthorized (Authorisation Error)</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>500</con:status>
+          <con:params/>
+          <con:description>Internal Server Error</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:request name="Request 1" id="aa093b9a-ecbb-4f6f-b583-623e6f0ecf03" mediaType="application/json">
+          <con:settings/>
+          <con:endpoint>/</con:endpoint>
+          <con:request/>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters/>
+        </con:request>
+      </con:method>
+      <con:method name="createUser" id="53bbdc1e-b593-494d-9727-c699fd0c114f" method="POST">
+        <con:description>Create a new user.</con:description>
+        <con:settings/>
+        <con:parameters/>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>201</con:status>
+          <con:params/>
+          <con:description>Successfull response</con:description>
+          <con:sampleContent>{
+  "id" : 12
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>400</con:status>
+          <con:params/>
+          <con:description>Bad Request</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>401</con:status>
+          <con:params/>
+          <con:description>Unauthorized (Authorisation Error)</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>500</con:status>
+          <con:params/>
+          <con:description>Internal Server Error</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="REQUEST">
+          <con:mediaType>application/json</con:mediaType>
+          <con:params/>
+          <con:sampleContent>{"email":"test@example.com","password":"pa$$word","firstName":"John","lastName":"Smith","countryIsoCode":"US","role":"ADMIN"}</con:sampleContent>
+        </con:representation>
+        <con:request name="example-success" id="769e6a08-bf87-4482-85af-593bbf52ca36" mediaType="application/json">
+          <con:settings/>
+          <con:endpoint>/</con:endpoint>
+          <con:request>{"email":"test@example.com","password":"pa$$word","firstName":"John","lastName":"Smith","countryIsoCode":"US","role":"ADMIN"}</con:request>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:parameters/>
+        </con:request>
+      </con:method>
+    </con:resource>
+    <con:resource name="/users/{userId}" path="/users/{userId}" id="60d09a6b-5ca0-460e-b5f1-298fded59d62">
+      <con:settings/>
+      <con:parameters>
+        <con:parameter required="true">
+          <con:name>userId</con:name>
+          <con:style>TEMPLATE</con:style>
+          <con:description>User ID</con:description>
+        </con:parameter>
+      </con:parameters>
+      <con:method name="getUser" id="48e83322-42b7-4219-b112-6a2dfd42e955" method="GET">
+        <con:description>Retrieve a user.</con:description>
+        <con:settings/>
+        <con:parameters>
+          <con:parameter required="true">
+            <con:name>userId</con:name>
+            <con:style>TEMPLATE</con:style>
+            <con:description>The id of the pet to retrieve</con:description>
+          </con:parameter>
+          <con:parameter required="true">
+            <con:name>X-ACCESS-TOKEN</con:name>
+            <con:style>HEADER</con:style>
+            <con:description>A token that you provide when making API calls for a user.  Include the token in a header parameter called X-ACCESS-TOKEN.</con:description>
+          </con:parameter>
+        </con:parameters>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:description>Successfull response</con:description>
+          <con:sampleContent>{
+  "id" : 12,
+  "email" : "test@example.com",
+  "password" : "string",
+  "firstName" : "John",
+  "lastName" : "Smith",
+  "countryIsoCode" : "US",
+  "mfa" : false,
+  "role" : "ADMIN",
+  "subscription" : {
+    "type" : "PREMIUM",
+    "isTimeLimited" : true,
+    "expiredIn" : "2021-08-24T14:15:22.220Z"
+  }
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>400</con:status>
+          <con:params/>
+          <con:description>Bad Request</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>401</con:status>
+          <con:params/>
+          <con:description>Unauthorized (Authorisation Error)</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>404</con:status>
+          <con:params/>
+          <con:description>Not Found</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>500</con:status>
+          <con:params/>
+          <con:description>Internal Server Error</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:request name="Request 1" id="712403cd-bea0-40fb-bd3e-b5d526072ab5" mediaType="application/json">
+          <con:settings/>
+          <con:endpoint>/</con:endpoint>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:parameters/>
+        </con:request>
+      </con:method>
+      <con:method name="deleteUser" id="76b65eb2-23b4-4fe8-aebb-0876df0982f0" method="DELETE">
+        <con:description>Delete a user.</con:description>
+        <con:settings/>
+        <con:parameters>
+          <con:parameter required="true">
+            <con:name>userId</con:name>
+            <con:style>TEMPLATE</con:style>
+            <con:description>The id of the pet to retrieve</con:description>
+          </con:parameter>
+          <con:parameter required="true">
+            <con:name>X-ACCESS-TOKEN</con:name>
+            <con:style>HEADER</con:style>
+            <con:description>A token that you provide when making API calls for a user.  Include the token in a header parameter called X-ACCESS-TOKEN.</con:description>
+          </con:parameter>
+        </con:parameters>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>400</con:status>
+          <con:params/>
+          <con:description>Bad Request</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>401</con:status>
+          <con:params/>
+          <con:description>Unauthorized (Authorisation Error)</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>404</con:status>
+          <con:params/>
+          <con:description>Not Found</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>500</con:status>
+          <con:params/>
+          <con:description>Internal Server Error</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:request name="Request 1" id="f11deb3d-d1d3-4717-9919-115f665ba20b" mediaType="application/json">
+          <con:settings/>
+          <con:endpoint>/</con:endpoint>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:parameters/>
+        </con:request>
+      </con:method>
+      <con:method name="updateUser" id="b90995d9-5d17-4847-ac77-d624ee0753a4" method="PUT">
+        <con:description>Update a user</con:description>
+        <con:settings/>
+        <con:parameters>
+          <con:parameter required="true">
+            <con:name>userId</con:name>
+            <con:style>TEMPLATE</con:style>
+            <con:description>The id of the pet to retrieve</con:description>
+          </con:parameter>
+          <con:parameter required="true">
+            <con:name>X-ACCESS-TOKEN</con:name>
+            <con:style>HEADER</con:style>
+            <con:description>A token that you provide when making API calls for a user.  Include the token in a header parameter called X-ACCESS-TOKEN.</con:description>
+          </con:parameter>
+        </con:parameters>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>400</con:status>
+          <con:params/>
+          <con:description>Bad Request</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>401</con:status>
+          <con:params/>
+          <con:description>Unauthorized (Authorisation Error)</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>404</con:status>
+          <con:params/>
+          <con:description>Not Found</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>500</con:status>
+          <con:params/>
+          <con:description>Internal Server Error</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="REQUEST">
+          <con:mediaType>application/json</con:mediaType>
+          <con:params/>
+          <con:sampleContent>{
+  "email" : "test@example.com",
+  "password" : "string",
+  "firstName" : "John",
+  "lastName" : "Smith",
+  "countryIsoCode" : "US",
+  "role" : "ADMIN"
+}</con:sampleContent>
+        </con:representation>
+        <con:request name="Request 1" id="6f0b13a0-d6b0-4e11-b390-1ff67dfd9181" mediaType="application/json">
+          <con:settings/>
+          <con:endpoint>/</con:endpoint>
+          <con:request>{
+  "email" : "test@example.com",
+  "password" : "string",
+  "firstName" : "John",
+  "lastName" : "Smith",
+  "countryIsoCode" : "US",
+  "role" : "ADMIN"
+}</con:request>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:parameters/>
+        </con:request>
+      </con:method>
+    </con:resource>
+  </con:interface>
+  <con:interface xsi:type="con:RestService" id="ce580000-de65-428c-a6ab-04058a442222" name="Users Service 1" type="rest_ex" wadlVersion="https://swagger.io/openapiv3/specification" definitionUrl="file:/home/vorakh/Desktop/openapi-demo/users-v3.0.yaml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <con:description>User Service provides access to the management system on user data.</con:description>
+    <con:settings/>
+    <con:definitionCache type="TEXT" rootPart="file:/home/vorakh/Desktop/openapi-demo/users-v3.0.yaml">
+      <con:part>
+        <con:url>file:/home/vorakh/Desktop/openapi-demo/users-v3.0.yaml</con:url>
+        <con:content>openapi: 3.0.0
+info:
+  version: 0.0.1
+  title: Users Service
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  contact:
+    name: Alisksandr Vorakh
+    email: aliaksandrvorakh@gmail.com
+  description: User Service provides access to the management system on user data.
+servers: []
+paths:
+  /users:
+    get:
+      summary: Retrieve users
+      operationId: getUsers
+      tags:
+        - get_users
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            exclusiveMinimum: true
+            maximum: 100
+            example: 66
+            default: 100
+      responses:
+        '200':
+          description: List of users
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+              examples:
+                example-simple:
+                  value:
+                    - id: 12
+                      email: test@example.com
+                      password: pa$$word
+                      firstName: John
+                      lastName: Smith
+                      countryIsoCode: US
+                      mfa: true
+                      role: ADMIN
+                      subscription:
+                        type: PREMIUM
+                        isTimeLimited: true
+                        expiredIn: '2021-08-24T14:15:22.22Z'
+                    - id: 14
+                      email: demo@example.com
+                      password: pa$$word
+                      firstName: Jeck
+                      lastName: Smith
+                      countryIsoCode: US
+                      mfa: false
+                      role: USER
+                      subscription:
+                        type: FREE
+                        isTimeLimited: false
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 1000
+                    message: Validation error
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '1000'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: Validation error
+              description: Error message header
+        '401':
+          description: Unauthorized (Authorisation Error)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 1001
+                    message: Authorisation Error
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '1001'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: Authorisation Error
+              description: Error message header
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 2000
+                    message: Internal Error
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '2000'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: Internal Error
+              description: Error message header
+      description: List all users.
+      security:
+        - X-API-KEY: []
+    post:
+      summary: Create a new user.
+      operationId: createUser
+      tags:
+        - create_user
+      responses:
+        '201':
+          description: Successfull response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 1000
+                    message: Validation error
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '1000'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: Validation error
+              description: Error message header
+        '401':
+          description: Unauthorized (Authorisation Error)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 1001
+                    message: Authorisation Error
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '1001'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: Authorisation Error
+              description: Error message header
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 2000
+                    message: Internal Error
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '2000'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: Internal Error
+              description: Error message header
+      description: Create a new user.
+      parameters: []
+      security:
+        - X-API-KEY: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserInput'
+            examples:
+              example-success:
+                value:
+                  email: test@example.com
+                  password: pa$$word
+                  firstName: John
+                  lastName: Smith
+                  countryIsoCode: US
+                  role: ADMIN
+        description: Successfull request
+    parameters: []
+  '/users/{userId}':
+    get:
+      summary: Retrieve a user.
+      operationId: getUser
+      tags:
+        - get_user_by_id
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The id of the pet to retrieve
+          schema:
+            type: string
+        - schema:
+            type: string
+            example: SomeJWTToken
+          in: header
+          name: X-ACCESS-TOKEN
+          required: true
+          description: A token that you provide when making API calls for a user.  Include the token in a header parameter called X-ACCESS-TOKEN.
+      responses:
+        '200':
+          description: Successfull response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                example:
+                  value:
+                    id: 12
+                    email: test@example.com
+                    password: pa$$word
+                    firstName: John
+                    lastName: Smith
+                    countryIsoCode: US
+                    mfa: false
+                    role: ADMIN
+                    subscription:
+                      type: PREMIUM
+                      isTimeLimited: true
+                      expiredIn: '2021-08-24T14:15:22.22Z'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 1000
+                    message: Validation error
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '1000'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: Validation error
+              description: Error message header
+        '401':
+          description: Unauthorized (Authorisation Error)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 1001
+                    message: Authorisation Error
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '1001'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: Authorisation Error
+              description: Error message header
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 1100
+                    message: User does not find
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '1100'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: User does not find
+              description: Error message header
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 2000
+                    message: Internal Error
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '2000'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: Internal Error
+              description: Error message header
+      security:
+        - X-API-KEY: []
+      description: Retrieve a user.
+    parameters:
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+        description: User ID
+    delete:
+      summary: Delete a user.
+      operationId: deleteUser
+      tags:
+        - delete_user_by_id
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The id of the pet to retrieve
+          schema:
+            type: string
+        - schema:
+            type: string
+            example: SomeJWTToken
+          in: header
+          name: X-ACCESS-TOKEN
+          required: true
+          description: A token that you provide when making API calls for a user.  Include the token in a header parameter called X-ACCESS-TOKEN.
+      responses:
+        '204':
+          description: No Content (Successful deletion)
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 1000
+                    message: Validation error
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '1000'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: Validation error
+              description: Error message header
+        '401':
+          description: Unauthorized (Authorisation Error)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 1001
+                    message: Authorisation Error
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '1001'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: Authorisation Error
+              description: Error message header
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 1100
+                    message: User does not find
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '1100'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: User does not find
+              description: Error message header
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 2000
+                    message: Internal Error
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '2000'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: Internal Error
+              description: Error message header
+      description: Delete a user.
+      security:
+        - X-API-KEY: []
+    put:
+      summary: Update a user
+      operationId: updateUser
+      tags:
+        - update_user_by_id
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The id of the pet to retrieve
+          schema:
+            type: string
+        - schema:
+            type: string
+            example: SomeJWTToken
+          in: header
+          name: X-ACCESS-TOKEN
+          required: true
+          description: A token that you provide when making API calls for a user.  Include the token in a header parameter called X-ACCESS-TOKEN.
+      responses:
+        '204':
+          description: No Content (Successful updating)
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 1000
+                    message: Validation error
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '1000'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: Validation error
+              description: Error message header
+        '401':
+          description: Unauthorized (Authorisation Error)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 1001
+                    message: Authorisation Error
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '1001'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: Authorisation Error
+              description: Error message header
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 1100
+                    message: User does not find
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '1100'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: User does not find
+              description: Error message header
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example:
+                  value:
+                    code: 2000
+                    message: Internal Error
+          headers:
+            X-ERROR-CODE:
+              schema:
+                type: string
+                example: '2000'
+              description: Error code header
+            X-ERROR-MESSAGE:
+              schema:
+                type: string
+                example: Internal Error
+              description: Error message header
+      description: Update a user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserInput'
+        description: Request
+      security:
+        - X-API-KEY: []
+components:
+  schemas:
+    Users:
+      type: array
+      items:
+        $ref: '#/components/schemas/User'
+      description: List of users.
+      x-internal: false
+    User:
+      x-examples: {}
+      type: object
+      title: User
+      description: User data related to output.
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 12
+          description: User ID
+          minimum: 0
+          exclusiveMinimum: true
+          readOnly: true
+        email:
+          type: string
+          format: email
+          example: test@example.com
+          minLength: 6
+          maxLength: 190
+          description: User email
+        password:
+          type: string
+          format: password
+          description: User Password
+        firstName:
+          type: string
+          description: First name
+          example: John
+        lastName:
+          type: string
+          description: Last name
+          example: Smith
+        countryIsoCode:
+          type: string
+          description: The two-character ISO 3166-1 alpha code for the country.
+          pattern: '^[A-Z]{2}$'
+          minLength: 2
+          maxLength: 2
+          example: US
+        mfa:
+          type: boolean
+          description: 'Multi-factor Authentication(MFA)is enabled. '
+          default: false
+        role:
+          type: string
+          enum:
+            - ADMIN
+            - USER
+            - MODERATOR
+          description: User role
+        subscription:
+          $ref: '#/components/schemas/Subscription'
+      required:
+        - id
+        - email
+        - countryIsoCode
+    IdOutput:
+      x-examples: {}
+      type: object
+      title: IdOutput
+      description: User ID related to output.
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 12
+          description: User ID
+          minimum: 0
+          exclusiveMinimum: true
+          readOnly: true
+      required:
+        - id
+    UserInput:
+      x-examples:
+        example-simple:
+          email: test@example.com
+          password: pa$$word
+          role: ADMIN
+        example-full:
+          email: test@example.com
+          password: pa$$word
+          firstName: John
+          lastName: Smith
+          countryIsoCode: US
+          role: ADMIN
+      type: object
+      title: UserIn
+      description: User data related to the new user creation.
+      properties:
+        email:
+          type: string
+          format: email
+          example: test@example.com
+          minLength: 6
+          maxLength: 190
+          description: User email.
+        password:
+          type: string
+          format: password
+          description: User password.
+        firstName:
+          type: string
+          description: First name.
+          example: John
+        lastName:
+          type: string
+          description: Last name.
+          example: Smith
+        countryIsoCode:
+          type: string
+          description: The two-character ISO 3166-1 alpha code for the country.
+          pattern: '^[A-Z]{2}$'
+          minLength: 2
+          maxLength: 2
+          example: US
+        role:
+          type: string
+          enum:
+            - ADMIN
+            - USER
+            - MODERATOR
+          description: User role.
+      required:
+        - email
+        - password
+        - role
+    Error:
+      type: object
+      description: Error details
+      properties:
+        code:
+          type: integer
+          format: int32
+          description: Error code.
+          minimum: 4
+          maximum: 4
+          example: 1234
+        message:
+          type: string
+          example: Validation error
+          description: Error message.
+      required:
+        - code
+        - message
+    Subscription:
+      title: Subscription
+      type: object
+      description: Subscription data related to the user
+      x-examples:
+        example-free:
+          type: FREE
+          isTimeLimited: false
+        example-premium:
+          type: PREMIUM
+          isTimeLimited: true
+          expiredIn: '2021-08-24T14:15:22.22Z'
+      properties:
+        type:
+          type: string
+          enum:
+            - FREE
+            - PREMIUM
+          description: Subscription type.
+          example: PREMIUM
+        isTimeLimited:
+          type: boolean
+          default: true
+          description: The subscription usage is affected by time limitations.
+        expiredIn:
+          type: string
+          format: date-time
+          pattern: '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{2}Z$'
+          example: '2021-08-24T14:15:22.22Z'
+          description: |-
+            The validity period of the subscription expires, specified in UTC.
+            A string in ISO 8601 format, YYYY-MM-DDThh:mm:ssZ.
+      required:
+        - type
+        - isTimeLimited
+  securitySchemes:
+    X-API-KEY:
+      name: X-API-KEY
+      type: apiKey
+      in: header
+      description: |-
+        An API key is a key that you provide when making API calls. 
+        Include the token in a header parameter called X-API-KEY.
+security:
+  - X-API-KEY: []</con:content>
+        <con:type>https://swagger.io/openapiv3/specification</con:type>
+      </con:part>
+    </con:definitionCache>
+    <con:endpoints>
+      <con:endpoint>/</con:endpoint>
+      <con:endpoint>http://localhost:8088/</con:endpoint>
+    </con:endpoints>
+    <con:resource name="/users" path="/users" id="cfdab63e-64bb-4a47-a912-4ebf0114364a">
+      <con:settings/>
+      <con:parameters/>
+      <con:method name="getUsers" id="6d89f73a-9dac-4e41-90e5-f46bd3f92321" method="GET">
+        <con:description>List all users.</con:description>
+        <con:settings/>
+        <con:parameters>
+          <con:parameter>
+            <con:name>limit</con:name>
+            <con:value>100</con:value>
+            <con:style>QUERY</con:style>
+            <con:default>100</con:default>
+            <con:description>How many items to return at one time (max 100)</con:description>
+          </con:parameter>
+        </con:parameters>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:description>List of users</con:description>
+          <con:sampleContent>[ {
+  "id" : 12,
+  "email" : "test@example.com",
+  "password" : "string",
+  "firstName" : "John",
+  "lastName" : "Smith",
+  "countryIsoCode" : "US",
+  "mfa" : false,
+  "role" : "ADMIN",
+  "subscription" : {
+    "type" : "PREMIUM",
+    "isTimeLimited" : true,
+    "expiredIn" : "2021-08-24T14:15:22.220Z"
+  }
+} ]</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>400</con:status>
+          <con:params/>
+          <con:description>Bad Request</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>401</con:status>
+          <con:params/>
+          <con:description>Unauthorized (Authorisation Error)</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>500</con:status>
+          <con:params/>
+          <con:description>Internal Server Error</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:request name="Request 1" id="ddab032d-15a6-48f5-b3d9-818eb45b9ff0" mediaType="application/json">
+          <con:settings/>
+          <con:endpoint>/</con:endpoint>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:parameters/>
+        </con:request>
+      </con:method>
+      <con:method name="createUser" id="42e09fd8-77e4-4b8d-a17a-e6bc5ad37d36" method="POST">
+        <con:description>Create a new user.</con:description>
+        <con:settings/>
+        <con:parameters/>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>201</con:status>
+          <con:params/>
+          <con:description>Successfull response</con:description>
+          <con:sampleContent>{
+  "id" : 12
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>400</con:status>
+          <con:params/>
+          <con:description>Bad Request</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>401</con:status>
+          <con:params/>
+          <con:description>Unauthorized (Authorisation Error)</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>500</con:status>
+          <con:params/>
+          <con:description>Internal Server Error</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="REQUEST">
+          <con:mediaType>application/json</con:mediaType>
+          <con:params/>
+          <con:sampleContent>{"email":"test@example.com","password":"pa$$word","firstName":"John","lastName":"Smith","countryIsoCode":"US","role":"ADMIN"}</con:sampleContent>
+        </con:representation>
+        <con:request name="example-success" id="8f3ad033-c223-4651-ae3d-d5b66f6a6b85" mediaType="application/json">
+          <con:settings/>
+          <con:endpoint>/</con:endpoint>
+          <con:request>{"email":"test@example.com","password":"pa$$word","firstName":"John","lastName":"Smith","countryIsoCode":"US","role":"ADMIN"}</con:request>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:parameters/>
+        </con:request>
+      </con:method>
+    </con:resource>
+    <con:resource name="/users/{userId}" path="/users/{userId}" id="191199d7-5ebd-45bd-a06f-7bbc5caeabd8">
+      <con:settings/>
+      <con:parameters>
+        <con:parameter required="true">
+          <con:name>userId</con:name>
+          <con:style>TEMPLATE</con:style>
+          <con:description>User ID</con:description>
+        </con:parameter>
+      </con:parameters>
+      <con:method name="getUser" id="c455a09f-5afb-4062-ab65-a50354d9336d" method="GET">
+        <con:description>Retrieve a user.</con:description>
+        <con:settings/>
+        <con:parameters>
+          <con:parameter required="true">
+            <con:name>userId</con:name>
+            <con:style>TEMPLATE</con:style>
+            <con:description>The id of the pet to retrieve</con:description>
+          </con:parameter>
+          <con:parameter required="true">
+            <con:name>X-ACCESS-TOKEN</con:name>
+            <con:style>HEADER</con:style>
+            <con:description>A token that you provide when making API calls for a user.  Include the token in a header parameter called X-ACCESS-TOKEN.</con:description>
+          </con:parameter>
+        </con:parameters>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:description>Successfull response</con:description>
+          <con:sampleContent>{
+  "id" : 12,
+  "email" : "test@example.com",
+  "password" : "string",
+  "firstName" : "John",
+  "lastName" : "Smith",
+  "countryIsoCode" : "US",
+  "mfa" : false,
+  "role" : "ADMIN",
+  "subscription" : {
+    "type" : "PREMIUM",
+    "isTimeLimited" : true,
+    "expiredIn" : "2021-08-24T14:15:22.220Z"
+  }
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>400</con:status>
+          <con:params/>
+          <con:description>Bad Request</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>401</con:status>
+          <con:params/>
+          <con:description>Unauthorized (Authorisation Error)</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>404</con:status>
+          <con:params/>
+          <con:description>Not Found</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>500</con:status>
+          <con:params/>
+          <con:description>Internal Server Error</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:request name="Request 1" id="48db0083-471e-4d93-a79f-409abd337488" mediaType="application/json">
+          <con:settings/>
+          <con:endpoint>/</con:endpoint>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:parameters/>
+        </con:request>
+      </con:method>
+      <con:method name="deleteUser" id="9339c802-95c3-445f-9c90-ca426462885f" method="DELETE">
+        <con:description>Delete a user.</con:description>
+        <con:settings/>
+        <con:parameters>
+          <con:parameter required="true">
+            <con:name>userId</con:name>
+            <con:style>TEMPLATE</con:style>
+            <con:description>The id of the pet to retrieve</con:description>
+          </con:parameter>
+          <con:parameter required="true">
+            <con:name>X-ACCESS-TOKEN</con:name>
+            <con:style>HEADER</con:style>
+            <con:description>A token that you provide when making API calls for a user.  Include the token in a header parameter called X-ACCESS-TOKEN.</con:description>
+          </con:parameter>
+        </con:parameters>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>400</con:status>
+          <con:params/>
+          <con:description>Bad Request</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>401</con:status>
+          <con:params/>
+          <con:description>Unauthorized (Authorisation Error)</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>404</con:status>
+          <con:params/>
+          <con:description>Not Found</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>500</con:status>
+          <con:params/>
+          <con:description>Internal Server Error</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:request name="Request 1" id="e444f584-bdd7-4418-ae8f-cc7207208393" mediaType="application/json">
+          <con:settings/>
+          <con:endpoint>/</con:endpoint>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:parameters/>
+        </con:request>
+      </con:method>
+      <con:method name="updateUser" id="fbbdccfa-4240-4f46-9e4f-6afe78680fb5" method="PUT">
+        <con:description>Update a user</con:description>
+        <con:settings/>
+        <con:parameters>
+          <con:parameter required="true">
+            <con:name>userId</con:name>
+            <con:style>TEMPLATE</con:style>
+            <con:description>The id of the pet to retrieve</con:description>
+          </con:parameter>
+          <con:parameter required="true">
+            <con:name>X-ACCESS-TOKEN</con:name>
+            <con:style>HEADER</con:style>
+            <con:description>A token that you provide when making API calls for a user.  Include the token in a header parameter called X-ACCESS-TOKEN.</con:description>
+          </con:parameter>
+        </con:parameters>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>400</con:status>
+          <con:params/>
+          <con:description>Bad Request</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>401</con:status>
+          <con:params/>
+          <con:description>Unauthorized (Authorisation Error)</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>404</con:status>
+          <con:params/>
+          <con:description>Not Found</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>500</con:status>
+          <con:params/>
+          <con:description>Internal Server Error</con:description>
+          <con:sampleContent>{
+  "code" : 1234,
+  "message" : "Validation error"
+}</con:sampleContent>
+        </con:representation>
+        <con:representation type="REQUEST">
+          <con:mediaType>application/json</con:mediaType>
+          <con:params/>
+          <con:sampleContent>{
+  "email" : "test@example.com",
+  "password" : "string",
+  "firstName" : "John",
+  "lastName" : "Smith",
+  "countryIsoCode" : "US",
+  "role" : "ADMIN"
+}</con:sampleContent>
+        </con:representation>
+        <con:request name="Request 1" id="58e93d90-8330-4a28-8674-92a81ae26d3a" mediaType="application/json">
+          <con:settings/>
+          <con:endpoint>/</con:endpoint>
+          <con:request>{
+  "email" : "test@example.com",
+  "password" : "string",
+  "firstName" : "John",
+  "lastName" : "Smith",
+  "countryIsoCode" : "US",
+  "role" : "ADMIN"
+}</con:request>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:parameters/>
+        </con:request>
+      </con:method>
+    </con:resource>
+  </con:interface>
+  <con:restMockService id="f0109dd3-5fd2-446a-b5ca-8384413f1ec3" port="8088" path="/" host="localhost" name="Users_Service_1_Virtual_Service">
+    <con:settings/>
+    <con:startScript/>
+    <con:properties>
+      <con:property>
+        <con:name>mock.apikey</con:name>
+        <con:value>DEMO-API-KEY</con:value>
+      </con:property>
+    </con:properties>
+    <con:constraints>
+      <con:congestion>0</con:congestion>
+      <con:inputBandwidth>-1</con:inputBandwidth>
+      <con:outputBandwidth>-1</con:outputBandwidth>
+      <con:maxThreadPoolCapacity>20</con:maxThreadPoolCapacity>
+      <con:coreThreadPoolCapacity>5</con:coreThreadPoolCapacity>
+      <con:virtError>
+        <con:start>0</con:start>
+        <con:endless>true</con:endless>
+      </con:virtError>
+    </con:constraints>
+    <con:headerValidator type="NONE"/>
+    <con:restMockAction name="/users" method="GET" resourcePath="/users" id="ca76d746-c74b-4802-9016-330fed5b0f7f">
+      <con:settings/>
+      <con:defaultResponse>Response 1</con:defaultResponse>
+      <con:dispatchStyle>SCRIPT</con:dispatchStyle>
+      <con:dispatchConfig/>
+      <con:dispatchPath>def validApiKey = 'DEMO-API-KEY'
+
+def requestPath = mockRequest.getPath()
+
+log.info "Path: $requestPath" 
+
+
+def requestHeaders = mockRequest.getRequestHeaders()
+
+log.info "Headers: $requestHeaders" 
+def apikey = requestHeaders.getCaseInsensitive('api-key', null)
+log.info "API-KEY Header: $apikey" 
+
+
+log.info "Valid apikey: $validApiKey"
+
+if (validApiKey != apikey){
+	log.info "Response status code 401"
+	
+	return "Response 3"
+}
+
+def limitParam = mockRequest.getQueryString() 
+
+if (limitParam !=null){
+    def map = limitParam.tokenize('&amp;')*.tokenize('=').collectEntries()
+    def limit = map.get("limit", null)
+    if (limit != null){
+    		limit = limit as int
+    		if( !(limit > 0 &amp;&amp; limit &lt;= 100)){
+    			   log.info "Response status code 401"
+        		 return "Response 2"
+    		}
+    }
+}
+
+def mockResponseCode = requestHeaders.getCaseInsensitive('x-mock-response-code', null) as int
+
+if (mockResponseCode == 500){
+	log.error "Response status code 500"
+     return "Response 4"
+}
+return "Response 1"</con:dispatchPath>
+      <con:dispatchXPath/>
+      <con:parameterDispatcherRuleContainer/>
+      <con:routeScript/>
+      <con:response name="Response 1" id="e88064f3-b9ce-4e61-bc42-7f33a33f8c72" httpResponseStatus="200" mediaType="application/json" compressedBodyContent="aced00057372002f636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c7565000b8b02c748eeab0200035a000a636f6d707265737365644c000b636f6d7072657373696f6e74003d4c636f6d2f657669776172652f736f617075692f696d706c2f737570706f72742f436f6d7072657373656456616c756524436f6d7072657373696f6e3b5b0004646174617400025b427870007e72003b636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c756524436f6d7072657373696f6e00000000000000001200007872000e6a6176612e6c616e672e456e756d000000000000000012000078707400044e4f4e4570" dataSource="">
+        <con:settings/>
+        <con:responseContent>[ {
+  "id" : 12,
+  "email" : "test@example.com",
+  "password" : "string",
+  "firstName" : "John",
+  "lastName" : "Smith",
+  "countryIsoCode" : "US",
+  "mfa" : false,
+  "role" : "ADMIN",
+  "subscription" : {
+    "type" : "PREMIUM",
+    "isTimeLimited" : true,
+    "expiredIn" : "2021-08-24T14:15:22.220Z"
+  }
+} ]</con:responseContent>
+      </con:response>
+      <con:response name="Response 2" id="4cabc2bf-e3de-4a09-a2d3-b70f51937a0d" httpResponseStatus="400" mediaType="application/json" compressedBodyContent="aced00057372002f636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c7565000b8b02c748eeab0200035a000a636f6d707265737365644c000b636f6d7072657373696f6e74003d4c636f6d2f657669776172652f736f617075692f696d706c2f737570706f72742f436f6d7072657373656456616c756524436f6d7072657373696f6e3b5b0004646174617400025b427870007e72003b636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c756524436f6d7072657373696f6e00000000000000001200007872000e6a6176612e6c616e672e456e756d000000000000000012000078707400044e4f4e4570" dataSource="">
+        <con:settings/>
+        <con:responseContent>{
+  "code" : 1000,
+  "message" : "Validation error"
+}</con:responseContent>
+        <con:header>
+          <con:name>X-ERROR-CODE</con:name>
+          <con:value>1000</con:value>
+        </con:header>
+        <con:header>
+          <con:name>X-ERROR-MESSAGE</con:name>
+          <con:value>Validation error</con:value>
+        </con:header>
+      </con:response>
+      <con:response name="Response 3" id="7a2d1a9c-5098-4cdd-85be-bf485c33ace4" httpResponseStatus="401" mediaType="application/json" compressedBodyContent="aced00057372002f636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c7565000b8b02c748eeab0200035a000a636f6d707265737365644c000b636f6d7072657373696f6e74003d4c636f6d2f657669776172652f736f617075692f696d706c2f737570706f72742f436f6d7072657373656456616c756524436f6d7072657373696f6e3b5b0004646174617400025b427870007e72003b636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c756524436f6d7072657373696f6e00000000000000001200007872000e6a6176612e6c616e672e456e756d000000000000000012000078707400044e4f4e4570" dataSource="">
+        <con:settings/>
+        <con:responseContent>{
+  "code" : 1001,
+  "message" : "Authorisation Error"
+}</con:responseContent>
+        <con:header>
+          <con:name>X-ERROR-CODE</con:name>
+          <con:value>1001</con:value>
+        </con:header>
+        <con:header>
+          <con:name>X-ERROR-MESSAGE</con:name>
+          <con:value>Authorisation Error</con:value>
+        </con:header>
+      </con:response>
+      <con:response name="Response 4" id="f68e9fa3-634f-4c42-96e9-856231294574" httpResponseStatus="500" mediaType="application/json" compressedBodyContent="aced00057372002f636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c7565000b8b02c748eeab0200035a000a636f6d707265737365644c000b636f6d7072657373696f6e74003d4c636f6d2f657669776172652f736f617075692f696d706c2f737570706f72742f436f6d7072657373656456616c756524436f6d7072657373696f6e3b5b0004646174617400025b427870007e72003b636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c756524436f6d7072657373696f6e00000000000000001200007872000e6a6176612e6c616e672e456e756d000000000000000012000078707400044e4f4e4570" dataSource="">
+        <con:settings/>
+        <con:responseContent>{
+  "code" : 2000,
+  "message" : "Internal Error"
+}</con:responseContent>
+        <con:header>
+          <con:name>X-ERROR-CODE</con:name>
+          <con:value>2000</con:value>
+        </con:header>
+        <con:header>
+          <con:name>X-ERROR-MESSAGE</con:name>
+          <con:value>Internal Error</con:value>
+        </con:header>
+      </con:response>
+    </con:restMockAction>
+    <con:restMockAction name="/users" method="POST" resourcePath="/users" id="37789dff-4941-4cc2-a23a-1f0a622fcc55">
+      <con:settings/>
+      <con:defaultResponse>Response 1</con:defaultResponse>
+      <con:dispatchStyle>SCRIPT</con:dispatchStyle>
+      <con:dispatchConfig/>
+      <con:dispatchPath>def getJson = { new groovy.json.JsonSlurper().parseText(it) }
+
+
+def validApiKey = 'DEMO-API-KEY'
+
+def requestPath = mockRequest.getPath()
+
+log.info "Path: $requestPath" 
+
+
+def requestHeaders = mockRequest.getRequestHeaders()
+
+log.info "Headers: $requestHeaders" 
+def apikey = requestHeaders.getCaseInsensitive('api-key', null)
+log.info "API-KEY Header: $apikey" 
+log.info "Valid apikey: $validApiKey"
+
+if (validApiKey != apikey){
+	log.error "Response status code 401"
+	
+	return "Response 3"
+}
+
+// validate the request body
+def requestBody = mockRequest.getRequestContent()
+log.info "Request body: [$requestBody] " 
+
+def actualEmail = getJson(requestBody).email
+log.info "Email:  [$actualEmail]" 
+
+def actualPassword = getJson(requestBody).password
+log.info "Password: [$actualPassword]"
+
+if (actualEmail ==null || actualPassword ==null ){
+	log.error "Email or password was missed"
+    return "Response 2"
+}
+
+def mockResponseCode = requestHeaders.getCaseInsensitive('x-mock-response-code', null) as int
+if (mockResponseCode == 500){
+	log.error "Response status code 500"
+     return "Response 4"
+}
+return "Response 1"</con:dispatchPath>
+      <con:dispatchXPath/>
+      <con:parameterDispatcherRuleContainer/>
+      <con:routeScript/>
+      <con:response name="Response 1" id="720a03c2-981d-41fc-89c6-d3e90cb39cfb" httpResponseStatus="201" mediaType="application/json" compressedBodyContent="aced00057372002f636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c7565000b8b02c748eeab0200035a000a636f6d707265737365644c000b636f6d7072657373696f6e74003d4c636f6d2f657669776172652f736f617075692f696d706c2f737570706f72742f436f6d7072657373656456616c756524436f6d7072657373696f6e3b5b0004646174617400025b427870007e72003b636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c756524436f6d7072657373696f6e00000000000000001200007872000e6a6176612e6c616e672e456e756d000000000000000012000078707400044e4f4e4570" dataSource="">
+        <con:settings/>
+        <con:responseContent>{
+  "id" : 12
+}</con:responseContent>
+      </con:response>
+      <con:response name="Response 2" id="68a8d963-583c-4059-8f5c-25d6ba2f1849" httpResponseStatus="400" mediaType="application/json" compressedBodyContent="aced00057372002f636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c7565000b8b02c748eeab0200035a000a636f6d707265737365644c000b636f6d7072657373696f6e74003d4c636f6d2f657669776172652f736f617075692f696d706c2f737570706f72742f436f6d7072657373656456616c756524436f6d7072657373696f6e3b5b0004646174617400025b427870007e72003b636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c756524436f6d7072657373696f6e00000000000000001200007872000e6a6176612e6c616e672e456e756d000000000000000012000078707400044e4f4e4570" dataSource="">
+        <con:settings/>
+        <con:responseContent>{
+  "code" : 1000,
+  "message" : "Validation error"
+}</con:responseContent>
+        <con:header>
+          <con:name>X-ERROR-CODE</con:name>
+          <con:value>1000</con:value>
+        </con:header>
+        <con:header>
+          <con:name>X-ERROR-MESSAGE</con:name>
+          <con:value>Validation error</con:value>
+        </con:header>
+      </con:response>
+      <con:response name="Response 3" id="707209ed-879f-41e6-a59b-50e2f1dc8f0e" httpResponseStatus="401" mediaType="application/json" compressedBodyContent="aced00057372002f636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c7565000b8b02c748eeab0200035a000a636f6d707265737365644c000b636f6d7072657373696f6e74003d4c636f6d2f657669776172652f736f617075692f696d706c2f737570706f72742f436f6d7072657373656456616c756524436f6d7072657373696f6e3b5b0004646174617400025b427870007e72003b636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c756524436f6d7072657373696f6e00000000000000001200007872000e6a6176612e6c616e672e456e756d000000000000000012000078707400044e4f4e4570" dataSource="">
+        <con:settings/>
+        <con:responseContent>{
+  "code" : 1001,
+  "message" : "Authorisation Error"
+}</con:responseContent>
+        <con:header>
+          <con:name>X-ERROR-CODE</con:name>
+          <con:value>1001</con:value>
+        </con:header>
+        <con:header>
+          <con:name>X-ERROR-MESSAGE</con:name>
+          <con:value>Authorisation Error</con:value>
+        </con:header>
+      </con:response>
+      <con:response name="Response 4" id="229c4b7e-19b5-404b-8ab6-3edb8fe588d9" httpResponseStatus="500" mediaType="application/json" compressedBodyContent="aced00057372002f636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c7565000b8b02c748eeab0200035a000a636f6d707265737365644c000b636f6d7072657373696f6e74003d4c636f6d2f657669776172652f736f617075692f696d706c2f737570706f72742f436f6d7072657373656456616c756524436f6d7072657373696f6e3b5b0004646174617400025b427870007e72003b636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c756524436f6d7072657373696f6e00000000000000001200007872000e6a6176612e6c616e672e456e756d000000000000000012000078707400044e4f4e4570" dataSource="">
+        <con:settings/>
+        <con:responseContent>{
+  "code" : 2000,
+  "message" : "Internal Error"
+}</con:responseContent>
+        <con:header>
+          <con:name>X-ERROR-CODE</con:name>
+          <con:value>2000</con:value>
+        </con:header>
+        <con:header>
+          <con:name>X-ERROR-MESSAGE</con:name>
+          <con:value>Internal Error</con:value>
+        </con:header>
+      </con:response>
+    </con:restMockAction>
+    <con:restMockAction name="/users/{userId}" method="GET" resourcePath="/users/{userId}" id="f82179a0-4c0d-4423-b209-cd8c2576cf48">
+      <con:settings/>
+      <con:defaultResponse>Response 1</con:defaultResponse>
+      <con:dispatchStyle>SCRIPT</con:dispatchStyle>
+      <con:dispatchConfig/>
+      <con:dispatchPath>def existedIds = [12] as Set
+def validApiKey = 'DEMO-API-KEY'
+
+def requestPath = mockRequest.getPath()
+
+log.info "Path: $requestPath" 
+
+def pathId = requestPath.tokenize("/").last()
+log.info "Path id: ${pathId}"
+if(!pathId.isNumber()){
+	log.info "Response status code 400"
+	
+	return "Response 2"
+}
+
+log.info "Path id: ${pathId}" 
+
+def requestHeaders = mockRequest.getRequestHeaders()
+
+log.info "Headers: $requestHeaders" 
+def apikey = requestHeaders.getCaseInsensitive('api-key', null)
+log.info "API-KEY Header: $apikey" 
+
+log.info "Valid apikey: $validApiKey"
+
+if (validApiKey != apikey){
+	log.info "Response status code 401"
+	
+	return "Response 3"
+}
+
+if (!existedIds.contains(pathId as int)){
+	return "Response 4"
+}
+
+def mockResponseCode = requestHeaders.getCaseInsensitive('x-mock-response-code', null) as int
+
+if (mockResponseCode == 500){
+	log.info "Response status code 500"
+     return "Response 5"
+}
+
+return "Response 1"</con:dispatchPath>
+      <con:dispatchXPath/>
+      <con:parameterDispatcherRuleContainer/>
+      <con:routeScript/>
+      <con:response name="Response 1" id="be47ca21-1d56-4561-afb5-0a4241cf1620" httpResponseStatus="200" mediaType="application/json" compressedBodyContent="aced00057372002f636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c7565000b8b02c748eeab0200035a000a636f6d707265737365644c000b636f6d7072657373696f6e74003d4c636f6d2f657669776172652f736f617075692f696d706c2f737570706f72742f436f6d7072657373656456616c756524436f6d7072657373696f6e3b5b0004646174617400025b427870007e72003b636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c756524436f6d7072657373696f6e00000000000000001200007872000e6a6176612e6c616e672e456e756d000000000000000012000078707400044e4f4e4570" dataSource="">
+        <con:settings/>
+        <con:responseContent>{
+  "id" : 12,
+  "email" : "test@example.com",
+  "password" : "string",
+  "firstName" : "John",
+  "lastName" : "Smith",
+  "countryIsoCode" : "US",
+  "mfa" : false,
+  "role" : "ADMIN",
+  "subscription" : {
+    "type" : "PREMIUM",
+    "isTimeLimited" : true,
+    "expiredIn" : "2021-08-24T14:15:22.220Z"
+  }
+}</con:responseContent>
+      </con:response>
+      <con:response name="Response 2" id="3ab620c9-18f1-4322-8286-b246976ea791" httpResponseStatus="400" mediaType="application/json" compressedBodyContent="aced00057372002f636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c7565000b8b02c748eeab0200035a000a636f6d707265737365644c000b636f6d7072657373696f6e74003d4c636f6d2f657669776172652f736f617075692f696d706c2f737570706f72742f436f6d7072657373656456616c756524436f6d7072657373696f6e3b5b0004646174617400025b427870007e72003b636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c756524436f6d7072657373696f6e00000000000000001200007872000e6a6176612e6c616e672e456e756d000000000000000012000078707400044e4f4e4570" dataSource="">
+        <con:settings/>
+        <con:responseContent>{
+  "code" : 1000,
+  "message" : "Validation error"
+}</con:responseContent>
+        <con:header>
+          <con:name>X-ERROR-CODE</con:name>
+          <con:value>1000</con:value>
+        </con:header>
+        <con:header>
+          <con:name>X-ERROR-MESSAGE</con:name>
+          <con:value>Validation error</con:value>
+        </con:header>
+      </con:response>
+      <con:response name="Response 3" id="7acfd75c-0ec5-4275-9876-5c6662075c2d" httpResponseStatus="401" mediaType="application/json" compressedBodyContent="aced00057372002f636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c7565000b8b02c748eeab0200035a000a636f6d707265737365644c000b636f6d7072657373696f6e74003d4c636f6d2f657669776172652f736f617075692f696d706c2f737570706f72742f436f6d7072657373656456616c756524436f6d7072657373696f6e3b5b0004646174617400025b427870007e72003b636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c756524436f6d7072657373696f6e00000000000000001200007872000e6a6176612e6c616e672e456e756d000000000000000012000078707400044e4f4e4570" dataSource="">
+        <con:settings/>
+        <con:responseContent>{
+  "code" : 1001,
+  "message" : "Authorisation Error"
+}</con:responseContent>
+        <con:header>
+          <con:name>X-ERROR-CODE</con:name>
+          <con:value>1001</con:value>
+        </con:header>
+        <con:header>
+          <con:name>X-ERROR-MESSAGE</con:name>
+          <con:value>Authorisation Error</con:value>
+        </con:header>
+      </con:response>
+      <con:response name="Response 4" id="433b95ca-d285-4392-a224-13af2f6751ca" httpResponseStatus="404" mediaType="application/json" compressedBodyContent="aced00057372002f636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c7565000b8b02c748eeab0200035a000a636f6d707265737365644c000b636f6d7072657373696f6e74003d4c636f6d2f657669776172652f736f617075692f696d706c2f737570706f72742f436f6d7072657373656456616c756524436f6d7072657373696f6e3b5b0004646174617400025b427870007e72003b636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c756524436f6d7072657373696f6e00000000000000001200007872000e6a6176612e6c616e672e456e756d000000000000000012000078707400044e4f4e4570" dataSource="">
+        <con:settings/>
+        <con:responseContent>{
+  "code" : 1100,
+  "message" : "User does not find"
+}</con:responseContent>
+        <con:header>
+          <con:name>X-ERROR-CODE</con:name>
+          <con:value>1100</con:value>
+        </con:header>
+        <con:header>
+          <con:name>X-ERROR-MESSAGE</con:name>
+          <con:value>User does not find</con:value>
+        </con:header>
+      </con:response>
+      <con:response name="Response 5" id="1daecd5b-861f-41ee-9917-720a2627a049" httpResponseStatus="500" mediaType="application/json" compressedBodyContent="aced00057372002f636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c7565000b8b02c748eeab0200035a000a636f6d707265737365644c000b636f6d7072657373696f6e74003d4c636f6d2f657669776172652f736f617075692f696d706c2f737570706f72742f436f6d7072657373656456616c756524436f6d7072657373696f6e3b5b0004646174617400025b427870007e72003b636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c756524436f6d7072657373696f6e00000000000000001200007872000e6a6176612e6c616e672e456e756d000000000000000012000078707400044e4f4e4570" dataSource="">
+        <con:settings/>
+        <con:responseContent>{
+  "code" : 2000,
+  "message" : "Internal Error"
+}</con:responseContent>
+        <con:header>
+          <con:name>X-ERROR-CODE</con:name>
+          <con:value>2000</con:value>
+        </con:header>
+        <con:header>
+          <con:name>X-ERROR-MESSAGE</con:name>
+          <con:value>Internal Error</con:value>
+        </con:header>
+      </con:response>
+    </con:restMockAction>
+    <con:restMockAction name="/users/{userId}" method="DELETE" resourcePath="/users/{userId}" id="bcd80d1a-eb92-43ba-9c0b-890204e001b9">
+      <con:settings/>
+      <con:defaultResponse>Response 2</con:defaultResponse>
+      <con:dispatchStyle>SCRIPT</con:dispatchStyle>
+      <con:dispatchConfig/>
+      <con:dispatchPath>def existedIds = [1,2,12] as Set
+def validApiKey = 'DEMO-API-KEY'
+
+def requestPath = mockRequest.getPath()
+
+log.info "Path: $requestPath" 
+
+def pathId = requestPath.tokenize("/").last()
+log.info "Path id: ${pathId}"
+if(!pathId.isNumber()){
+	log.info "Response status code 400"
+	
+	return "Response 2"
+}
+
+log.info "Path id: ${pathId}" 
+
+def requestHeaders = mockRequest.getRequestHeaders()
+
+log.info "Headers: $requestHeaders" 
+def apikey = requestHeaders.getCaseInsensitive('api-key', null)
+log.info "API-KEY Header: $apikey" 
+
+log.info "Valid apikey: $validApiKey"
+
+if (validApiKey != apikey){
+	log.info "Response status code 401"
+	
+	return "Response 3"
+}
+
+if (!existedIds.contains(pathId as int)){
+	return "Response 4"
+}
+
+def mockResponseCode = requestHeaders.getCaseInsensitive('x-mock-response-code', null) as int
+
+if (mockResponseCode == 500){
+	log.info "Response status code 500"
+     return "Response 5"
+}
+
+return "Response 1"</con:dispatchPath>
+      <con:dispatchXPath/>
+      <con:parameterDispatcherRuleContainer/>
+      <con:routeScript/>
+      <con:response name="Response 2" id="f5d38ebc-e6e3-4fb3-a466-5d3daba8ab50" httpResponseStatus="400" mediaType="application/json" compressedBodyContent="aced00057372002f636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c7565000b8b02c748eeab0200035a000a636f6d707265737365644c000b636f6d7072657373696f6e74003d4c636f6d2f657669776172652f736f617075692f696d706c2f737570706f72742f436f6d7072657373656456616c756524436f6d7072657373696f6e3b5b0004646174617400025b427870007e72003b636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c756524436f6d7072657373696f6e00000000000000001200007872000e6a6176612e6c616e672e456e756d000000000000000012000078707400044e4f4e4570" dataSource="">
+        <con:settings/>
+        <con:responseContent>{
+  "code" : 1000,
+  "message" : "Validation error"
+}</con:responseContent>
+        <con:header>
+          <con:name>X-ERROR-CODE</con:name>
+          <con:value>1000</con:value>
+        </con:header>
+        <con:header>
+          <con:name>X-ERROR-MESSAGE</con:name>
+          <con:value>Validation error</con:value>
+        </con:header>
+      </con:response>
+      <con:response name="Response 1" id="b31459da-6e1e-408c-a30f-afffaed2c157" httpResponseStatus="204" dataSource="">
+        <con:settings/>
+        <con:responseContent/>
+      </con:response>
+      <con:response name="Response 3" id="fa78bf2e-13a6-4e86-abf5-dc129c777aea" httpResponseStatus="401" mediaType="application/json" compressedBodyContent="aced00057372002f636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c7565000b8b02c748eeab0200035a000a636f6d707265737365644c000b636f6d7072657373696f6e74003d4c636f6d2f657669776172652f736f617075692f696d706c2f737570706f72742f436f6d7072657373656456616c756524436f6d7072657373696f6e3b5b0004646174617400025b427870007e72003b636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c756524436f6d7072657373696f6e00000000000000001200007872000e6a6176612e6c616e672e456e756d000000000000000012000078707400044e4f4e4570" dataSource="">
+        <con:settings/>
+        <con:responseContent>{
+  "code" : 1001,
+  "message" : "Authorisation Error"
+}</con:responseContent>
+        <con:header>
+          <con:name>X-ERROR-CODE</con:name>
+          <con:value>1001</con:value>
+        </con:header>
+        <con:header>
+          <con:name>X-ERROR-MESSAGE</con:name>
+          <con:value>Authorisation Error</con:value>
+        </con:header>
+      </con:response>
+      <con:response name="Response 4" id="c0beb450-eab8-45d3-8a76-23bb3eb99fa2" httpResponseStatus="404" mediaType="application/json" compressedBodyContent="aced00057372002f636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c7565000b8b02c748eeab0200035a000a636f6d707265737365644c000b636f6d7072657373696f6e74003d4c636f6d2f657669776172652f736f617075692f696d706c2f737570706f72742f436f6d7072657373656456616c756524436f6d7072657373696f6e3b5b0004646174617400025b427870007e72003b636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c756524436f6d7072657373696f6e00000000000000001200007872000e6a6176612e6c616e672e456e756d000000000000000012000078707400044e4f4e4570" dataSource="">
+        <con:settings/>
+        <con:responseContent>{
+  "code" : 1100,
+  "message" : "User does not find"
+}</con:responseContent>
+        <con:header>
+          <con:name>X-ERROR-CODE</con:name>
+          <con:value>1100</con:value>
+        </con:header>
+        <con:header>
+          <con:name>X-ERROR-MESSAGE</con:name>
+          <con:value>User does not find</con:value>
+        </con:header>
+      </con:response>
+      <con:response name="Response 5" id="ad584c46-435c-4a3a-9086-718a7ba15508" httpResponseStatus="500" mediaType="application/json" compressedBodyContent="aced00057372002f636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c7565000b8b02c748eeab0200035a000a636f6d707265737365644c000b636f6d7072657373696f6e74003d4c636f6d2f657669776172652f736f617075692f696d706c2f737570706f72742f436f6d7072657373656456616c756524436f6d7072657373696f6e3b5b0004646174617400025b427870007e72003b636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c756524436f6d7072657373696f6e00000000000000001200007872000e6a6176612e6c616e672e456e756d000000000000000012000078707400044e4f4e4570" dataSource="">
+        <con:settings/>
+        <con:responseContent>{
+  "code" : 2000,
+  "message" : "Internal Error"
+}</con:responseContent>
+        <con:header>
+          <con:name>X-ERROR-CODE</con:name>
+          <con:value>2000</con:value>
+        </con:header>
+        <con:header>
+          <con:name>X-ERROR-MESSAGE</con:name>
+          <con:value>Internal Error</con:value>
+        </con:header>
+      </con:response>
+    </con:restMockAction>
+    <con:restMockAction name="/users/{userId}" method="PUT" resourcePath="/users/{userId}" id="351dd016-6578-4900-92cd-63b1e736fcbb">
+      <con:settings/>
+      <con:defaultResponse>Response 1</con:defaultResponse>
+      <con:dispatchStyle>SCRIPT</con:dispatchStyle>
+      <con:dispatchConfig/>
+      <con:dispatchPath>def existedIds = [1,2,12] as Set
+def validApiKey = 'DEMO-API-KEY'
+
+def requestPath = mockRequest.getPath()
+
+log.info "Path: $requestPath" 
+
+def pathId = requestPath.tokenize("/").last()
+log.info "Path id: ${pathId}"
+if(!pathId.isNumber()){
+	log.info "Response status code 400"
+	
+	return "Response 2"
+}
+
+log.info "Path id: ${pathId}" 
+
+def requestHeaders = mockRequest.getRequestHeaders()
+
+log.info "Headers: $requestHeaders" 
+def apikey = requestHeaders.getCaseInsensitive('api-key', null)
+log.info "API-KEY Header: $apikey" 
+
+log.info "Valid apikey: $validApiKey"
+
+if (validApiKey != apikey){
+	log.info "Response status code 401"
+	
+	return "Response 3"
+}
+
+if (!existedIds.contains(pathId as int)){
+	return "Response 4"
+}
+
+def mockResponseCode = requestHeaders.getCaseInsensitive('x-mock-response-code', null) as int
+
+if (mockResponseCode == 500){
+	log.info "Response status code 500"
+     return "Response 5"
+}
+
+return "Response 1"</con:dispatchPath>
+      <con:dispatchXPath/>
+      <con:parameterDispatcherRuleContainer/>
+      <con:routeScript/>
+      <con:response name="Response 1" id="f3590e71-1d8a-43e5-a359-34ae7faf3032" httpResponseStatus="204" mediaType="application/json" compressedBodyContent="aced00057372002f636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c7565000b8b02c748eeab0200035a000a636f6d707265737365644c000b636f6d7072657373696f6e74003d4c636f6d2f657669776172652f736f617075692f696d706c2f737570706f72742f436f6d7072657373656456616c756524436f6d7072657373696f6e3b5b0004646174617400025b427870007e72003b636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c756524436f6d7072657373696f6e00000000000000001200007872000e6a6176612e6c616e672e456e756d000000000000000012000078707400044e4f4e4570" dataSource="">
+        <con:settings/>
+        <con:responseContent/>
+      </con:response>
+      <con:response name="Response 2" id="d30128ab-26e9-444f-8de5-aedeacac5960" httpResponseStatus="400" mediaType="application/json" compressedBodyContent="aced00057372002f636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c7565000b8b02c748eeab0200035a000a636f6d707265737365644c000b636f6d7072657373696f6e74003d4c636f6d2f657669776172652f736f617075692f696d706c2f737570706f72742f436f6d7072657373656456616c756524436f6d7072657373696f6e3b5b0004646174617400025b427870007e72003b636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c756524436f6d7072657373696f6e00000000000000001200007872000e6a6176612e6c616e672e456e756d000000000000000012000078707400044e4f4e4570" dataSource="">
+        <con:settings/>
+        <con:responseContent>{
+  "code": 1000,
+  "message": "Validation error"
+}</con:responseContent>
+        <con:header>
+          <con:name>X-ERROR-CODE</con:name>
+          <con:value>1000</con:value>
+        </con:header>
+        <con:header>
+          <con:name>X-ERROR-MESSAGE</con:name>
+          <con:value>Validation error</con:value>
+        </con:header>
+      </con:response>
+      <con:response name="Response 3" id="5b6a5d92-6a16-4003-a236-38a9d98fe8d4" httpResponseStatus="401" mediaType="application/json" compressedBodyContent="aced00057372002f636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c7565000b8b02c748eeab0200035a000a636f6d707265737365644c000b636f6d7072657373696f6e74003d4c636f6d2f657669776172652f736f617075692f696d706c2f737570706f72742f436f6d7072657373656456616c756524436f6d7072657373696f6e3b5b0004646174617400025b427870007e72003b636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c756524436f6d7072657373696f6e00000000000000001200007872000e6a6176612e6c616e672e456e756d000000000000000012000078707400044e4f4e4570" dataSource="">
+        <con:settings/>
+        <con:responseContent>{
+  "code": 1001,
+  "message": "Authorisation Error"
+}</con:responseContent>
+        <con:header>
+          <con:name>X-ERROR-CODE</con:name>
+          <con:value>1001</con:value>
+        </con:header>
+        <con:header>
+          <con:name>X-ERROR-MESSAGE</con:name>
+          <con:value>Authorisation Error</con:value>
+        </con:header>
+      </con:response>
+      <con:response name="Response 4" id="39409277-1325-4c2f-af43-88fbc43123de" httpResponseStatus="404" mediaType="application/json" compressedBodyContent="aced00057372002f636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c7565000b8b02c748eeab0200035a000a636f6d707265737365644c000b636f6d7072657373696f6e74003d4c636f6d2f657669776172652f736f617075692f696d706c2f737570706f72742f436f6d7072657373656456616c756524436f6d7072657373696f6e3b5b0004646174617400025b427870007e72003b636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c756524436f6d7072657373696f6e00000000000000001200007872000e6a6176612e6c616e672e456e756d000000000000000012000078707400044e4f4e4570" dataSource="">
+        <con:settings/>
+        <con:responseContent>{
+  "code": 1100,
+  "message": "User does not find"
+}</con:responseContent>
+        <con:header>
+          <con:name>X-ERROR-CODE</con:name>
+          <con:value>1100</con:value>
+        </con:header>
+        <con:header>
+          <con:name>X-ERROR-MESSAGE</con:name>
+          <con:value>User does not find</con:value>
+        </con:header>
+      </con:response>
+      <con:response name="Response 5" id="9da81fa6-c90d-463f-97e9-9c5ec9823a9a" httpResponseStatus="500" compressedBodyContent="aced00057372002f636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c7565000b8b02c748eeab0200035a000a636f6d707265737365644c000b636f6d7072657373696f6e74003d4c636f6d2f657669776172652f736f617075692f696d706c2f737570706f72742f436f6d7072657373656456616c756524436f6d7072657373696f6e3b5b0004646174617400025b427870007e72003b636f6d2e657669776172652e736f617075692e696d706c2e737570706f72742e436f6d7072657373656456616c756524436f6d7072657373696f6e00000000000000001200007872000e6a6176612e6c616e672e456e756d000000000000000012000078707400044e4f4e4570" mediaType="application/json">
+        <con:settings/>
+        <con:responseContent>{
+  "code": 2000,
+  "message": "Internal Error"
+}</con:responseContent>
+        <con:header>
+          <con:name>X-ERROR-CODE</con:name>
+          <con:value>2000</con:value>
+        </con:header>
+        <con:header>
+          <con:name>X-ERROR-MESSAGE</con:name>
+          <con:value>Internal Error</con:value>
+        </con:header>
+      </con:response>
+    </con:restMockAction>
+  </con:restMockService>
+  <con:properties/>
+  <con:wssContainer/>
+  <con:databaseConnectionContainer/>
+  <con:jmsConnectionContainer/>
+  <con:oAuth2ProfileContainer/>
+  <con:oAuth1ProfileContainer/>
+  <con:reporting>
+    <con:reportTemplates/>
+    <con:xmlTemplates/>
+    <con:xmlTemplates/>
+    <con:parameters/>
+    <con:parameters/>
+  </con:reporting>
+  <con:reporting/>
+  <con:eventHandlers type="RequestFilter.filterRequest" name="RequestFilter.filterRequest">
+    <con:script>// Sample event script to add custom HTTP header to all outgoing REST, SOAP and HTTP(S) calls
+// This code is often used for adding custom authentication to ReadyAPI functional tests
+
+// If hardcoding the token, uncomment and change line 5
+// token = '4567'
+
+// If your token is parameterized in Project level custom property, uncomment line 8
+// token = request.parent.testCase.testSuite.project.getProperty('auth_token').getValue()
+
+// To modify all outgoing calls, remove comments from lines 11 to 16
+// headers = request.requestHeaders
+// if (headers.containsKey('auth_token2') == false) {
+//   headers.put('auth_token2', token)
+//   request.requestHeaders = headers
+// }</con:script>
+  </con:eventHandlers>
+  <con:eventHandlers type="TestRunListener.afterStep" name="TestRunListener.afterStep">
+    <con:script>// Save all test step results into files
+// Change the directory path in line 5 to a location where you want to store details
+// then uncomment lines 5 to 10
+
+// filePath = 'C:\\tempOutputDirectory\\'
+// fos = new java.io.FileOutputStream(filePath + testStepResult.testStep.label + '.txt', true)
+// pw = new java.io.PrintWriter(fos)
+// testStepResult.writeTo(pw)
+// pw.close()
+// fos.close()</con:script>
+  </con:eventHandlers>
+  <con:authRepository/>
+  <con:tags/>
+</con:soapui-project>
